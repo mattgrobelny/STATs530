@@ -1,3 +1,6 @@
+# STATS530 - HW 1
+Mateusz Grobelny
+
 ## Problem 1
 Under a Case-control study the cases and controls proportions are chosen deliberately  which may not reflect the frequencies of how cases actually occur in the population.
 
@@ -41,10 +44,16 @@ b = n0/(B+D) \* B
 c = n1/(A+C) \* C  
 d = n0/(B+D) \* D  
 
-In case control sampling the risk for a given group is determined from the total individuals present in the sampling which is not directly related to the risk in the actual population.   
+In case control sampling the risk for a given group is determined from the total individuals present in the sampling which is not directly related to the risk in the actual population.  
+
+Furthermore, when substituting in the values for a,b,c,d with the equivalent cross sectional values the fractions simplify back to the original risk difference equations but when substituting in with case control samples the fractions do not simplify back to the original risk difference equations.   
 
 ## Problem 2
-IDK
+Yes, it is possible to estimate B1 since its possible to estimate odds ratio from case - control sampling:
+
+```
+B1 = log((A/B)/(C/D)) = log((P1/(1-P1))/(P2/(1-P2))
+```
 ## Problem 3
 ```
 $ head /proc/cpuinfo
@@ -78,7 +87,9 @@ $ plink --noweb --file hapmap1
 ```  
 Cases: 44  
 Controls: 45  
-genotyping rate: 0.99441       
+genotyping rate: 0.99441     
+
+## Problem 5  
 
 ```
 # Start importing allele data

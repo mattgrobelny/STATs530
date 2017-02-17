@@ -185,3 +185,19 @@ false postives
 
 Genome wide significance
 t = 5*10^-8
+
+# 2.15.17
+Population structure
+- Population Stratification
+- Cryptic relatedness
+
+Three Solutions:
+- Genomics control (Solve both)
+- PCA adjustment ( solve population Stratification)
+- Mixed models (solve Cryptic relatedness)
+
+PCA
+- Adds surrogate features to get missing (Popi)
+
+How does PCA work?
+- Center and scale genotypes: xi-xBar / (stnd dev)
