@@ -32,7 +32,7 @@ Filter SNPs (MAF, genotyping quality) [Delete Column]
 ## Integrate outside Data
 - Encode
 - USCB genome browser
-
+___   
 # 1.30.17
 
 ### HWE and GWAS QC
@@ -81,7 +81,7 @@ X^2 = Summation{ (O-E)^2/ E }
 X^2 = 28.125  
 p < 0.005
 ```
-
+___  
 # 2.1.17  
 degrees of freedom for X^2 =  (Rows - 1 ) \* (Column - 1)
 
@@ -103,7 +103,7 @@ Dominate: P(DD or Dd) when Yi = 1 == P(dd) when Yi = 0
 Recessive: P(DD) when Yi = 1 vs P(DD) when Yi = 0
 Genotypic: DD vs Dd vs dd ( give an genotype same probability to have disease)
 Allelic: D vs d
-
+___  
 # 2.6.17
 - Effect size should be reported in addition to the p - val  
 - Even with low p val P(null True) is high...  
@@ -143,7 +143,7 @@ Estimation of effect size based on exp design
 - Prospective
 - Cross sectional
 - Retrospective
-
+___  
 # 2.8.17
 
 Case-control vs Cross sectional  
@@ -174,7 +174,7 @@ a = n1/(A+C) \*A
 b = n0/(B+D) \* B  
 c = n1/(A+C) \* C  
 d = n0/(B+D) \* D  
-
+___  
 # 2.10.17
 Multiple testing
 
@@ -185,7 +185,7 @@ false postives
 
 Genome wide significance
 t = 5*10^-8
-
+___  
 # 2.15.17
 Population structure
 - Population Stratification
@@ -201,3 +201,25 @@ PCA
 
 How does PCA work?
 - Center and scale genotypes: xi-xBar / (stnd dev)
+___   
+
+# 2.24.17
+eQTL - Expression quantitate trait locus = genetic locus associated with mRNA lvls
+
+cis - eQTL close to the regulated gene ~1mb  
+trans- eQTL far away  
+
+eQTL Paper
+
+### Preprocessing and QC
+
+1. Normalization
+2. Expression quantification
+3. Batch correction
+4. Residual adj for other covariates
+5. Filter Genes (annotation, low expression)
+
+
+
+GEO - gene expression omibus
+___
