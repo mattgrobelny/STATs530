@@ -1,0 +1,7 @@
+genotypename: qcd.ped
+snpname: qcd.map
+indivname: qcd.ped
+outputformat: EIGENSTRAT
+genotypeoutname: qcd.geno
+snpoutname: qcd.snp
+indivoutname: qcd.ind

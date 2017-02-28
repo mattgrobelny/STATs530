@@ -1,0 +1,51 @@
+
+@----------------------------------------------------------@
+|        PLINK!       |     v1.07      |   10/Aug/2009     |
+|----------------------------------------------------------|
+|  (C) 2009 Shaun Purcell, GNU General Public License, v2  |
+|----------------------------------------------------------|
+|  For documentation, citation & bug-report instructions:  |
+|        http://pngu.mgh.harvard.edu/purcell/plink/        |
+@----------------------------------------------------------@
+
+Skipping web check... [ --noweb ] 
+Writing this text to log file [ pc1.log ]
+Analysis started: Mon Feb 27 21:46:12 2017
+
+Options in effect:
+	--file qcd
+	--logistic
+	--adjust
+	--covar pcs.txt
+	--noweb
+	--covar-name PC1
+	--out pc1
+
+58737 (of 58737) markers to be included from [ qcd.map ]
+89 individuals read from [ qcd.ped ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading 3 covariates from [ pcs.txt ] with nonmissing values for 89 individuals
+Selected subset of 1 from 3 covariates
+For these, nonmissing covariate values for 89 individuals
+Before frequency and genotyping pruning, there are 58737 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.995313
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 58737 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Converting data to Individual-major format
+Writing logistic model association results to [ pc1.assoc.logistic ] 
+Computing corrected significance values (FDR, Sidak, etc)
+Genomic inflation factor (based on median chi-squared) is 1.02424
+Mean chi-squared statistic is 0.961775
+Correcting for 58737 tests
+Writing multiple-test corrected significance values to [ pc1.assoc.logistic.adjusted ] 
+
+Analysis finished: Mon Feb 27 21:46:21 2017
+

@@ -1,0 +1,11 @@
+genotypename: qcd.geno
+snpname: qcd.snp
+indivname: qcd.ind
+evecoutname: qcd.pca.evec
+evaloutname: qcd.eval
+altnormstyle: NO
+numoutevec: 3
+numoutlieriter: 5
+numoutlierevec: 3
+outliersigmathresh: 6.0
+qtmode: 0

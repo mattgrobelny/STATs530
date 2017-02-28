@@ -1,0 +1,52 @@
+
+@----------------------------------------------------------@
+|        PLINK!       |     v1.07      |   10/Aug/2009     |
+|----------------------------------------------------------|
+|  (C) 2009 Shaun Purcell, GNU General Public License, v2  |
+|----------------------------------------------------------|
+|  For documentation, citation & bug-report instructions:  |
+|        http://pngu.mgh.harvard.edu/purcell/plink/        |
+@----------------------------------------------------------@
+
+Skipping web check... [ --noweb ] 
+Writing this text to log file [ nopc.log ]
+Analysis started: Mon Feb 27 19:31:49 2017
+
+Options in effect:
+	--file qcd
+	--logistic
+	--pheno pop.phe
+	--adjust
+	--noweb
+	--out nopc
+
+58737 (of 58737) markers to be included from [ qcd.map ]
+89 individuals read from [ qcd.ped ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading alternate phenotype from [ pop.phe ] 
+89 individuals with non-missing alternate phenotype
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+Before frequency and genotyping pruning, there are 58737 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.995313
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 58737 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Converting data to Individual-major format
+Writing logistic model association results to [ nopc.assoc.logistic ] 
+Computing corrected significance values (FDR, Sidak, etc)
+Genomic inflation factor (based on median chi-squared) is 1.63725
+Mean chi-squared statistic is 1.50682
+Correcting for 58737 tests
+Writing multiple-test corrected significance values to [ nopc.assoc.logistic.adjusted ] 
+
+Analysis finished: Mon Feb 27 19:31:56 2017
+
