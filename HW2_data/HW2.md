@@ -1,8 +1,7 @@
 ### Stats HW2
 ### Mateusz Grobelny
 
-
-#### Q1
+### Q1
 ```
 plink --file hapmap1 --mind 0.06 --maf 0.05 --geno 0.1 --hwe 0.0001 \
 --noweb --recode --out qcd
@@ -11,9 +10,11 @@ plink --file hapmap1 --mind 0.06 --maf 0.05 --geno 0.1 --hwe 0.0001 \
 No samples were removed
 
 ##### How many SNPs are left?
-58737 SNPs
+58737 SNPs  
 
-#### Q2
+---
+
+### Q2
 ```
 plink --file qcd --logistic --pheno pop.phe --adjust --noweb --out nopc
 ```
@@ -29,9 +30,11 @@ OR = 1.673
 
 ##### Is having more minor alleles of this SNP associated with higher or lower risk?
 Increasing Odds ratio means there is a higher probability of something happening.
-Since this SNP has an OR of 1.673 that means that it is associated with higher risk
+Since this SNP has an OR of 1.673 that means that it is associated with higher risk  
 
-#### Q3
+---
+
+### Q3
 ```
 ~/Downloads/EIG-6.1.4/bin/convertf -p par.PED.EIGENSTRAT
 ```
@@ -46,7 +49,9 @@ $ head -n 5 qcd.pca
   0.1068 -0.0439 -0.0735
 ```
 
-#### Q4
+---
+
+### Q4
 ```
 evec <- read.table("qcd.pca.evec");
 fid <- sapply(as.character(evec$V1),function(x){ strsplit(x,":")[[1]][1]; });
@@ -73,7 +78,9 @@ OR = 0.01695
 Odds ratio decreased after controlling for pop stratification. The rs2222162
 his actually associated with lower risk.
 
-#### Q5
+---
+
+### Q5
 Sort by Unadjusted
 ```
 pc1 <- read.table("pc1.assoc.logistic.adjust",header=TRUE);
@@ -99,5 +106,7 @@ Bonferroni threshold = 0.05/58737 = ~8.512*10^-7
 
 No SNP was found to be pass the Bonferroni threshold.
 
-#### Q6
-On manhattan_plot.md 
+---
+
+### Q6
+On Grobelny_manhattan_plot.pdf
