@@ -24,8 +24,7 @@ Pj_store <- data.frame(total_mins_to_capture =integer(),
 colnames(Pj_store) <- c('Pj_star','Pj_dagger')
 while (sim_num !=0){
 m = sample(501:max_m, 1)
-sim_pvals <- Pvalue.norm.sim(n = 100, mu = 0, mu0 = 0, sigma = 2, sigma0 = 1,
-                test= "t", alternative ="two.sided", B = m)
+sim_pvals <- runif(m,min=0, max=1 )
 
 total_mins_to_capture = sample(10:500, 1)
 sim_pvals <- sort(sim_pvals)
@@ -33,8 +32,9 @@ x<- head(sim_pvals,n=total_mins_to_capture)
 percent_of_data_used <- total_mins_to_capture/m
 r <- tail(x, n=1)
 
+#
 # Get FDR cutt offs for 
-Pj_star<- fdrtool(sim_pvals,verbose=FALSE,statistic = 'pvalue',plot=FALSE)$param[1]
+Pj_star<- fdrtool(sim_pvals,verbose=FALSE,cutoff.method = 'locfdr',statistic = 'pvalue',plot=FALSE)$param[1]
 
 Pj_star<- fdrtool(sim_pvals,verbose=FALSE,statistic = 'pvalue',plot=FALSE)
 
@@ -52,7 +52,7 @@ if (Pj_star >= Pj_dagger){
   Grt_Pj_star_binary =0
   Grt_Pj_dagger_binary =1
   df =data.frame(total_mins_to_capture,m,r, Pj_star,Pj_dagger,Grt_Pj_star_binary,Grt_Pj_dagger_binary,percent_of_data_used)}
-print (sim_num)
+print(sim_num)
 
 #Save FDR cutoffs for Pj_star and Pj_dagger
 Pj_store <- rbind(Pj_store,df)
@@ -64,5 +64,5 @@ list_return <-list("Pj_store" = Pj_store,'Grt_Pj_star'=Grt_Pj_star,'Grt_Pj_dagge
 return(list_return)
 }
 
-FDR_comp_out<- sim_FDR_comparison(100, 10000)
+FDR_comp_out<- sim_FDR_comparison(10, 10000)
 View(FDR_comp_out$Pj_store)
