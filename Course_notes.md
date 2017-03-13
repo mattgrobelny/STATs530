@@ -1,4 +1,4 @@
-# Stat530  
+experiment# Stat530  
 # 1.25.17  
 GWAS
 - DNA, Genes, SNPs...
@@ -223,3 +223,116 @@ eQTL Paper
 
 GEO - gene expression omibus
 ___
+
+# 3.1.17
+## Association testing
+
+Objects of statistical inference
+B1 -
+B0 - intercept
+B1 -slope
+signma sq - Residual variance
+
+Model Development
+Gi = B0 + B1Xi + Error
+
+- not reverseable
+- can not draw causal relationship
+
+Minimizing the vertical = regression x on y
+Minimizing the horizontal = regression y on x
+Minimizing the perpendicular = 1st PCA
+
+We can test H0 : B1 = 0 for each SNPs
+
+or
+
+Multiple linear regression
+H0: b1 =0, B2 = 0
+
+or
+is the relationship inversed?
+H0: B1 = -B2
+
+## How to identify true associations after testing?  
+Fall Discovery rate (FDR)
+
+Have a p val threshold which minimizes false negative and false positives
+
+FDR : control
+
+E(number of false positives/max{total number of Discoveries, 1}) <= alpha (alpha predetermined)
+
+number of false positives = test relationship is 0 but pj <= t (still significance)
+
+total number = number of test with p <= threshold
+
+minimize false negatives
+### Methods for FDR : BH (Benjamini and Hochberg)
+
+# 3.3.17
+
+expected(mt >= count(# p>0.05))/count(# p<0.05) = FDR
+
+FRD ~> mt /(count(p<= 0.05))
+
+BH (Benjamini and Hochberg)
+
+t* = sup [t: mt/count(p<= 0.05) < alpha]
+
+IF increase number of tests, decreases number of Discoveries
+
+# 3.10.17
+### Kmeans Clustering - look up objective function for Kmeans
+1. Take euclidan distance between two points for each pair in a cluster
+2. sum up for each distance
+3. Divide the sum by total number of objects in Cluster
+4. Add up for all clusters
+5. Minimize cluster   
+
+
+Scree plot - helps determine number of kmeans cluster
+y = Error
+x = # number of clusters
+
+Look for elbow of the plot.
+As K increase error decreases, find where error starts to slow down with increased K
+
+### Functional
+
+Given a gene list of interest and given a list of biological functions.
+how can we determine whether the gene set of interest is involved in the biological function?
+
+Find intersection and complement between cluster and biological function.
+
+1. How many genes are catagorized within bio function.
+2. How many over lap for a given cluster.
+3. Compare actual overlap vs expected overlap.
+
+Data sets for gene pathways
+- Kegg
+- Biocarta
+- MSigDB
+- Gene Ontology
+
+### GeO
+Three main roots
+- Biological Process
+- Molecular Function
+- Cellular Component
+
+Multiple ways to determine which genes are important.
+
+## 1 Fishers exact test.
+You know which genes in your experiment are important
+
+## 2 Kolmogorov-Smirnow test
+You only have p-vals for the genes in your experiment
+
+In each case you do a test for independence.
+
+CDF  - test for independence
+
+To estimate :
+
+Sample size for KS test - two mice with 30k genes --> sample size == 30k not 2.
