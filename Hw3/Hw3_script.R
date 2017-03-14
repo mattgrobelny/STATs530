@@ -1,68 +1,107 @@
 library("TeachingDemos")
 library("qvalue")
 library('fdrtool')
-#
-# Simulate and plot p-values from a normal or binomial based test under various conditions.
-# When all the assumptions are true, the p-values should follow an approximate uniform distribution. 
-# These functions show that along with how violating the assumptions changes the distribution of the p-values.
+library("ggplot2")
+library("reshape2")
+library('ggfortify')
 
-sim_FDR_comparison <- function(sim_num, max_m){
-
-Grt_Pj_star <- 0
-Grt_Pj_dagger <- 0
-
-# Set up empty df for parameter storage
-Pj_store <- data.frame(total_mins_to_capture =integer(),
-                      m =integer(), 
-                      r=double(),
-                      Pj_star =integer(),
-                      Pj_dagger=integer(),
-                      Grt_Pj_star_binary= integer(),
-                      Grt_Pj_dagger_binary = integer(),
-                      percent_of_data_used = double())
-
-colnames(Pj_store) <- c('Pj_star','Pj_dagger')
-while (sim_num !=0){
-m = sample(501:max_m, 1)
-sim_pvals <- runif(m,min=0, max=1 )
-
-total_mins_to_capture = sample(10:500, 1)
-sim_pvals <- sort(sim_pvals)
-x<- head(sim_pvals,n=total_mins_to_capture)
-percent_of_data_used <- total_mins_to_capture/m
-r <- tail(x, n=1)
-
-#
-# Get FDR cutt offs for 
-Pj_star<- fdrtool(sim_pvals,verbose=FALSE,cutoff.method = 'locfdr',statistic = 'pvalue',plot=FALSE)$param[1]
-
-Pj_star<- fdrtool(sim_pvals,verbose=FALSE,statistic = 'pvalue',plot=FALSE)
-
-Pj_dagger<- fdrtool(sim_pvals,statistic = 'pvalue',verbose=FALSE,plot=FALSE, cutoff.method = 'pct0', pct0=percent_of_data_used)$param[1]
-
-# Compare FDR cut offs between Pj_star and Pj_dagger
-if (Pj_star >= Pj_dagger){
-  Grt_Pj_star <- Grt_Pj_star+ 1
-  Grt_Pj_star_binary =1
-  Grt_Pj_dagger_binary =0
-  df =data.frame(total_mins_to_capture,m,r, Pj_star,Pj_dagger,Grt_Pj_star_binary,Grt_Pj_dagger_binary,percent_of_data_used)
+######################################################################################################
+# Pval simulation function and differnce test 
+sim_FDR_comparison <- function(sim_num, total_mins_to_capture, max_m, sim_method){
+  sim_keep <- sim_num
+  # make empty df
+  df_1 <- data.frame(matrix(ncol = sim_num, nrow = total_mins_to_capture))
+  for( i in 1:total_mins_to_capture){
+    df_1[i,1] = i
+  }
   
-}else {
-  Grt_Pj_dagger <-Grt_Pj_dagger+1
-  Grt_Pj_star_binary =0
-  Grt_Pj_dagger_binary =1
-  df =data.frame(total_mins_to_capture,m,r, Pj_star,Pj_dagger,Grt_Pj_star_binary,Grt_Pj_dagger_binary,percent_of_data_used)}
+  # randomize number of tests 
+  m <- sample(5000:max_m, 1)
+  
+  while (sim_num != 0){
+    # sim pvalues from 0 to 1 
+    if (sim_method ==1){
+    sim_pvals <- runif(m,min=0, max=1 )
+    }else{sim_pvals<-Pvalue.norm.sim(n = 6000, mu = 0, mu0 = 0.1, sigma = 10, sigma0 = 0.1,
+                          test= "t", alternative ="two.sided", alpha = 0.05, B =m)}
+    # sort p values
+    sim_pvals <- sort(sim_pvals)
+    
+    # collect min p values 
+    x<- head(sim_pvals,n=total_mins_to_capture)
+    percent_of_data_used <- total_mins_to_capture/m
+    
+    #
+    # Get FDR adj for Star and dagger
+    Pj_star<- p.adjust(sim_pvals, method = 'fdr')
+    Pj_dagger<- p.adjust(x, method = 'fdr',n = m )
+    
+# take difference between each Pj value between the two FDR adjustment schemes 
+col_it <-2+sim_keep-sim_num
+for (i in 1:total_mins_to_capture){
+  df_1[i,col_it ] <- Pj_star[i] - Pj_dagger[i]
+  
+}
+
+
 print(sim_num)
+sim_num = sim_num -1 
 
-#Save FDR cutoffs for Pj_star and Pj_dagger
-Pj_store <- rbind(Pj_store,df)
-
-# decrease sim num by one
-sim_num =sim_num -1
-}
-list_return <-list("Pj_store" = Pj_store,'Grt_Pj_star'=Grt_Pj_star,'Grt_Pj_dagger'= Grt_Pj_dagger)
-return(list_return)
+  }
+# Output dataframe of delta pvals 
+  return(df_1)
+  
 }
 
-FDR_comp_out<- sim_FDR_comparison(10, 10000)
-View(FDR_comp_out$Pj_store)
+######################################################################################################
+# Plotting Function
+plot_Delta <- function(sim_num,data){
+# Plot the Delta (Pj_star - Pj_dagger) to visulize the relationship between the two FDR adjustment schemes
+  
+  data_raw <- data[,2:sim_num]
+  data_1 = stack(data_raw)
+  seq_out = c()
+  for (i in 1:(sim_num-1)){
+    seq_it <- seq(1,length(data_raw[,1]),1)
+    seq_out <- append(seq_out,seq_it)
+  }
+  data_1<- cbind(data_1,seq_out)
+  ggplot(data=data_1, aes(x=data_1[,3],y=data_1[,1], color=data_1[,2])) + geom_line()+
+    theme_bw()+
+    theme(legend.position="none")+
+    xlab("Pj")+
+    ylab("Delta (Pj_star - Pj_dagger)")
+    
+    
+    
+}
+
+######################################################################################################
+sim = 20
+tests = 100
+# Random Sim Pvals (20 sims)
+Delta_output<- sim_FDR_comparison(sim,200,tests,1)
+plot_Delta(sim,Delta_output)
+
+sim = 50
+tests = 1000
+# Random Sim Pvals (20 sims)
+Delta_output<- sim_FDR_comparison(sim,200,tests,1)
+plot_Delta(sim,Delta_output)
+
+sim = 50
+tests = 10000
+# Random Sim Pvals (20 sims)
+Delta_output<- sim_FDR_comparison(sim,200,tests,1)
+plot_Delta(sim,Delta_output)
+
+sim = 100
+tests = 100000
+# Random Sim Pvals (20 sims)
+Delta_output<- sim_FDR_comparison(sim,200,tests,1)
+plot_Delta(sim,Delta_output)
+######################################################################################################
+
+# Since Delta (Pj_star - Pj_dagger) is generally negative,from P_1 to P_200, this means that FDJ adjustment of pvalues using the complete set of pvals is baised twoards a higher FDR threshold then when just using a subset of minimum pvals. 
+
+######################################################################################################
