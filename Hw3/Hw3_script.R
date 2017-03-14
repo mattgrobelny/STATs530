@@ -1,9 +1,14 @@
+################
+# Stats 530
+# Hw 3
+# Mateusz Grobelny
+#
+#######
+
+## Part 1
+
 library("TeachingDemos")
-library("qvalue")
-library('fdrtool')
 library("ggplot2")
-library("reshape2")
-library('ggfortify')
 
 ######################################################################################################
 # Pval simulation function and differnce test 
@@ -77,31 +82,41 @@ plot_Delta <- function(sim_num,data){
 }
 
 ######################################################################################################
+####
 sim = 20
 tests = 100
 # Random Sim Pvals (20 sims)
 Delta_output<- sim_FDR_comparison(sim,200,tests,1)
 plot_Delta(sim,Delta_output)
 
+####
 sim = 50
 tests = 1000
 # Random Sim Pvals (20 sims)
 Delta_output<- sim_FDR_comparison(sim,200,tests,1)
 plot_Delta(sim,Delta_output)
 
+####
 sim = 50
 tests = 10000
 # Random Sim Pvals (20 sims)
 Delta_output<- sim_FDR_comparison(sim,200,tests,1)
 plot_Delta(sim,Delta_output)
 
+####
 sim = 100
 tests = 100000
 # Random Sim Pvals (20 sims)
 Delta_output<- sim_FDR_comparison(sim,200,tests,1)
 plot_Delta(sim,Delta_output)
+
 ######################################################################################################
 
 # Since Delta (Pj_star - Pj_dagger) is generally negative,from P_1 to P_200, this means that FDJ adjustment of pvalues using the complete set of pvals is baised twoards a higher FDR threshold then when just using a subset of minimum pvals. 
 
 ######################################################################################################
+
+## Part 2
+
+# When calculating the BH FDR, the threshold is identified by multipling t by m and dividing by the number of significant pvals while keeping the FDR below alpha. This means that when data is pooled together, the number of significant pvals will increases resulting in a larger denominator and larger m. However, if the effective size is relativity small between the two groups then the threshold for false positives should be similar which together lowers number of false positives more effectivily which inturn may result in more siginifcant pvals.   
+
