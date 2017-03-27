@@ -336,3 +336,19 @@ CDF  - test for independence
 To estimate :
 
 Sample size for KS test - two mice with 30k genes --> sample size == 30k not 2.
+
+# 3.27.17
+
+## RNAseq
+
+Sexual dimorphism,  certain genes can be highly expressed in one gender vs the other.
+- Male-biased vs Female-biased
+- Unbiased
+
+Effects of:
+- sexual selection
+- intraspecies competition
+
+Goals:
+Are gene expression patterns DE between mono and poly flies?
+- between males and females?
