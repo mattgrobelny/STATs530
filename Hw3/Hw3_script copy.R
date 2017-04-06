@@ -49,7 +49,7 @@ for (i in 1:total_mins_to_capture){
 }
 
 
-print(sim_num)
+#print(sim_num)
 sim_num = sim_num -1 
 
   }
@@ -112,11 +112,18 @@ plot_Delta(sim,Delta_output)
 
 ######################################################################################################
 
-# Since Delta (Pj_star - Pj_dagger) is generally negative,from P_1 to P_200, this means that FDJ adjustment of pvalues using the complete set of pvals is baised twoards a higher FDR threshold then when just using a subset of minimum pvals. 
+# Since Delta (Pj_star - Pj_dagger) is generally negative,from P_1 to P_200, 
+# this means that FDJ adjustment of pvalues using the complete set of pvals is baised twoards 
+# a higher FDR threshold then when just using a subset of minimum pvals. 
 
 ######################################################################################################
 
 ## Part 2
 
-# When calculating the BH FDR, the threshold is identified by multipling t by m and dividing by the number of significant pvals while keeping the FDR below alpha. This means that when data is pooled together, the number of significant pvals will increases resulting in a larger denominator and larger m. However, if the effective size is relativity small between the two groups then the threshold for false positives should be similar which together lowers number of false positives more effectivily which inturn may result in more siginifcant pvals.   
+# When calculating the BH FDR, the threshold is identified by multipling t by m and 
+# dividing by the number of significant pvals while keeping the FDR below alpha. This 
+# means that when data is pooled together, the number of significant pvals will increases 
+# resulting in a larger denominator and larger m. However, if the effective size is relativity
+# small between the two groups then the threshold for false positives should be similar which 
+# together lowers number of false positives more effectivily which inturn may result in more siginifcant pvals.   
 
