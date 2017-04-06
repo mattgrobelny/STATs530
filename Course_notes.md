@@ -352,3 +352,34 @@ Effects of:
 Goals:
 Are gene expression patterns DE between mono and poly flies?
 - between males and females?
+
+# April 5th
+
+## RNAseq QC
+
+Expression = Total#Reads * (RNA output of gene g in sample i ) / (total RNA output in sample i)  
+
+*Do not know total RNA output in sample i*
+
+Two Paradigm for analysis
+1. Annotate - then - identify : pre-specfied exons/genes, then count reads falling into these regions
+2. Assemble - then - identify : Assemble reads then count transcripts
+
+Two Normalization Methods
+1. Normalize across samples but not across exons/genes
+2. Normalize across samples and transcripts
+
+Differential Expression - RNAseq
+
+Count out comes : Cant use linear or Logistic regression
+
+HW5 - Question
+Whats the exp for? force result to be positive
+
+Random var beta distributed only takes between value of 0 to 1 .
+
+### Expected val of counts =  (Egi) (lg) / Si * Ni
+
+### (Ygi | Xi) = exp(logNI + BoX +B1Xi) ~~
+
+## (egi) (lg)/Sr
