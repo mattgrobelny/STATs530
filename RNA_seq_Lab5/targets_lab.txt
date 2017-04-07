@@ -1,0 +1,7 @@
+file	sex	replicate
+female_polygamous_01_gene_id.counts	female	1
+female_polygamous_02_gene_id.counts	female	2
+female_polygamous_03_gene_id.counts	female	3
+male_polygamous_01_gene_id.counts	male	1
+male_polygamous_02_gene_id.counts	male	2
+male_polygamous_03_gene_id.counts	male	3
