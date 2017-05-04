@@ -1,4 +1,4 @@
-experiment# Stat530  
+intruderexperiment# Stat530  
 # 1.25.17  
 GWAS
 - DNA, Genes, SNPs...
@@ -383,3 +383,169 @@ Random var beta distributed only takes between value of 0 to 1 .
 ### (Ygi | Xi) = exp(logNI + BoX +B1Xi) ~~
 
 ## (egi) (lg)/Sr
+
+# 4.7.17
+
+RNA - seq Lab
+
+First command run with 1 or 0 mismatch
+
+# 4.10.17
+
+Estimating dispersion
+
+Sample Size problem -
+dispersion = variance of a gene expression
+
+Gaussian sequence problem
+
+HW6- Compare 1000 mus
+
+If MLE errors are not ~1 then something wrong with simulation.
+
+EdgeR
+Common dispersion : assumes all genes have same dispersion parameter
+Trended dispersion: assume that fi_g = f(p^-1 Summation_g(ugi)  
+Tag wise dispersion : When variation is gene specific Empirical Bayes estimators
+provide an advantageous compromise between the extremes of assuming common dispersion
+or separate
+
+# 4.12.17
+
+Estimating dispersion
+
+Neyman - Scott problem
+
+- Estimate sigma^2 without knowing the mus
+- Variance = deviation from average
+
+REML - restricted maximum likelihood estimator
+Cox-Reid adjusted profile likelihood
+
+## ANOVA
+
+ANOVA - analysis of variance
+
+Experiment with looks at different factors --> ANOVA
+
+ANOVA as a linear model...?
+Ygi = expression of gene g in subject i
+
+group  = 0 control , 1 experiment
+
+regions = 0 if amigdala, 1 if hypothalmus
+
+time = 0 if 30min, 1 if 60min
+
+Step 1
+Write the question as a linear model.
+
+Q. How is experimental group related to gene expression?
+
+or
+
+Q. What genes are DE?
+
+DE = dependent
+
+independent var = group ( control vs experimental)
+
+express relationship between: group <---> Ygi
+
+model: Ygi ~ Beta_0 + Beta_1*group1
+
+may not be truth... but just chosen to just understand the question
+
+# 4.14.17
+
+### ANOVA
+
+Basic Analysis
+
+1. Biological question
+2. independent & dep variables
+3. Write down regression
+4. identify parameter of interest
+5. Formulate H0
+6. Hypothesis test
+---
+### ANOVA Example 1
+
+Q. What genes in mouse are involved in response to conspecific intruder?
+
+Variables: Mouse treated with intruder (1) w/o intruder (0)
+
+Regression Model: negative binomial Regression
+  log E(ygi|group_i) = B_g0 + B_g1*group_i --> One way ANOVA -type
+
+Parameters
+log E(ygi|group 1) = B_g0 + B_g1
+
+log E(ygi|group 0) = B_g0
+
+### LogFold Change
+Bg1 = log((ygi|group 1) /(ygi|group 0)
+
+### Hypothesis
+
+Null: Hoi * Bgi = 0
+
+Reject --> Differential Expressed Genes
+
+---   
+
+### ANOVA Example 2
+
+Q: What genes respond to intruder differently in different brain regions?
+
+Variance:
+- Dep: Ygi
+- Ind: group{1,0}
+        regions {1: amygdla, 0: hypothalmus}
+
+---
+#### WRONG MODEL EXAMPLE  
+Regression  
+logE(Ygi | group_i, region_i) = B_go + B_g1**group_i + B_g2 ** region_i
+
+Parameters
+
+logE(Ygi | group 1, region 1) = B_go + B_g1 + B_g2  
+logE(Ygi | group 0, region 1) = B_go+ B_g2  
+logE(Ygi | group 1, region 0) = B_go+ B_g1  
+logE(Ygi | group 0, region 0) = B_go  
+---
+
+#### Correct Model
+Regression - Saturate two way ANOVA (group*region <- interaction term)  
+
+logE(Ygi | group_i, region_i) = B_go + B_g1 ** group_i + B_g2 ** region_i + B_g3*group_i*region_i
+
+Parameters
+
+logE(Ygi | group 1, region 1) = B_go + B_g1 + B_g2 + B_g3  
+logE(Ygi | group 0, region 1) = B_go+ B_g2  
+logE(Ygi | group 1, region 0) = B_go+ B_g1  
+logE(Ygi | group 0, region 0) = B_go  
+
+Null: H0:B_g3 = 0
+---
+
+Dummy variable coding
+
+---
+
+### ANOVA Example 3
+Q: What genes respond to intrusion only in the amygdala
+
+
+# 4.26.17
+
+Predictions
+- Lasso
+
+Random Forest
+
+Cross Validation
+
+# 4.28.17
