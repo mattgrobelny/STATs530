@@ -1,0 +1,13 @@
+file,sex,mating,replicate
+female_monogamous_01_gene_id.counts,female,monogamous,1
+female_monogamous_02_gene_id.counts,female,monogamous,2
+female_monogamous_03_gene_id.counts,female,monogamous,3
+female_polygamous_01_gene_id.counts,female,polygamous,1
+female_polygamous_02_gene_id.counts,female,polygamous,2
+female_polygamous_03_gene_id.counts,female,polygamous,3
+male_monogamous_01_gene_id.counts,male,monogamous,1
+male_monogamous_02_gene_id.counts,male,monogamous,2
+male_monogamous_03_gene_id.counts,male,monogamous,3
+male_polygamous_01_gene_id.counts,male,polygamous,1
+male_polygamous_02_gene_id.counts,male,polygamous,2
+male_polygamous_03_gene_id.counts,male,polygamous,3
